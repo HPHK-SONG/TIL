@@ -100,6 +100,13 @@ const UI = {
   },
   setPlayList: () => {
     UI.sidebar.innerHTML = localStorage.getItem("playlist");
+  },
+  setResetButton: () => {
+    const resetButton = document.querySelector("#js-reset");
+    resetButton.addEventListener("click", () => {
+      localStorage.clear();
+      UI.sidebar.innerHTML = null;
+    });
   }
 };
 
