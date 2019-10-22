@@ -73,12 +73,37 @@ const SoundCloudAPI = {
 
       searchResults.appendChild(card);
     });
+  },
+  addPlayList: track_url => {
+    SC.oEmbed(track_url).then(oEmbed => {
+      const playbox = document.createElement("div");
+      playbox.innerHTML = oEmbed.html;
+      UI.sidebar.insertBefore(playbox, UI.sidebar.firstChild);
+      localStorage.setItem("playlist", UI.sidebar.innerHTML);
+    });
   }
 };
+
+const UI = {
+  inputArea: document.querySelector("#js-search-input"),
+  sidebar: document.querySelector("#js-playlist"),
+  setInputArea: () => {
+    UI.inputArea.addEventListener("keyup", e => {
+      if (e.which === 13) SoundCloudAPI.getTracks(UI.inputArea.value);
+    });
+  },
+  setSearchButton: () => {
+    const searchButton = document.querySelector("#js-search-icon");
+    searchButton.addEventListener("click", () => {
+      SoundCloudAPI.getTracks(UI.inputArea.value);
+    });
+  },
+  setPlayList: () => {
+    UI.sidebar.innerHTML = localStorage.getItem("playlist");
+  }
+};
+
 SoundCloudAPI.init();
-SoundCloudAPI.getTracks("busker");
-
-/* 2. SoundCloud API  사용하기 */
-/* 3. 카드 보여주기 */
-
-/* 4. Playlist 에 추가하고 실제로 재생하기 */
+UI.setInputArea();
+UI.setSearchButton();
+UI.setPlayList();
