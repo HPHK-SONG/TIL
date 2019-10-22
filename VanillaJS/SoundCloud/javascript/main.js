@@ -24,7 +24,7 @@ const SoundCloudAPI = {
       card.classList.add("card");
 
       //Image
-      const imageDiv = document.querySelector("div");
+      const imageDiv = document.createElement("div");
       imageDiv.classList.add("image");
 
       const imageImg = document.createElement("img");
@@ -70,11 +70,13 @@ const SoundCloudAPI = {
       card.appendChild(imageDiv);
       card.appendChild(content);
       card.appendChild(button);
+
+      searchResults.appendChild(card);
     });
   }
 };
 SoundCloudAPI.init();
-SoundCloudAPI.getTracks();
+SoundCloudAPI.getTracks("busker");
 
 /* 2. SoundCloud API  사용하기 */
 /* 3. 카드 보여주기 */
