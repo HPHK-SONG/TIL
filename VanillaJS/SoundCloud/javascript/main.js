@@ -114,3 +114,4 @@ SoundCloudAPI.init();
 UI.setInputArea();
 UI.setSearchButton();
 UI.setPlayList();
+UI.setResetButton();
