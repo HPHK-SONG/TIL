@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="hphk">Happy Hacking!</h1>
+    <h2 id="visitor"></h2>
+    <div>
+      <a href="#" id="who-button">Who said what?</a>
+      <span id="answerer"></span>
+    </div>
+    <div>
+      <span id="counter">0</span>
+      <button id="counter-plus-btn">PLUS</button>
+      <button id="counter-minus-btn">MINUS</button>
+      <button id="counter-reset-btn">RESET</button>
+    </div>
+    <script>
+      //   alert("귀찮은 알림 창");
+      //   const visitor = prompt("누구십니까?");
+      //   const whoVisit = document.querySelector("#visitor");
+      //   if (visitor === "송빈산") {
+      //     whoVisit.innerHTML = visitor + "님 어서오세요";
+      //   } else {
+      //     whoVisit.innerHTML = "꺼지세요";
+      //   }
+      //   const whoButton = document.querySelector("#who-button");
+      //   whoButton.addEventListener("click", function() {
+      //     document.querySelector("#answerer").innerHTML = visitor;
+      //   });
+      let number = 0;
+      const counter = document.querySelector("#counter");
+      const plusBtn = document.querySelector("#counter-plus-btn");
+      plusBtn.addEventListener("click", function() {
+        counter.innerHTML = number;
+      });
+    </script>
+  </body>
+</html>
