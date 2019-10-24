@@ -1,36 +1,25 @@
-const promise = new Promise((resolve, reject) => {
-  // Async 작업...
-  const data = [1, 2, 3, 4, 5];
-  resolve(data);
-  reject("실패했어요ㅠㅜ");
-});
+async function getInfo() {
+  const user = await getUser(1);
+  const repo = await getRepo(user.githubID);
+  const commit = await getCommit(repo.commitID);
+  console.log(commit);
+}
 
-// promise
-//   .then(result => console.log(result))
-//   .catch(error => console.log(error));
-
-// const getAccount = new Promise(
-//   (resolve, reject) => {
-//     setTimeout(() => {
-//       const number = Math.floor(
-//         Math.random() * 100,
-//       );
-//       // 0 ~ 99까지의 수를 랜덤하게 뽑아냅니다.
-//       if (number % 2 === 1)
-//         resolve({ id: 1, balance: 1000 });
-//       else
-//         reject(
-//           new Error(
-//             "계좌에 접근할 수 없어요ㅠㅠ",
-//           ),
-//         );
-//     }, 2000);
-//   },
-// );
-
-// getAccount
-//   .then(result => console.log(result))
-//   .catch(err => console.error(err));
+// getInfo();
+//IIFE
+(async function() {
+  try {
+    const user = await getUser(1);
+    const repo = await getRepo(user.githubID);
+    const commit = await getCommit(repo.commitID);
+    console.log(commit);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    //   unconnectDB();
+    console.log("연결이 해지되었습니다");
+  }
+})();
 
 function getUser(id) {
   console.log("유저를 찾고 있습니다...");
@@ -90,10 +79,3 @@ function getCommit(commitID) {
     }, 2000);
   });
 }
-const test = getUser(1)
-  .then(user => getRepo(user.githubID))
-  .then(repo => getCommit(repo.commitID))
-  .then(commit => console.log(commit))
-  .catch(err => console.errror(err));
-console.log(test);
-//어렵네...
