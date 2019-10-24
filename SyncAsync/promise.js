@@ -1,6 +1,7 @@
 const promise = new Promise((resolve, reject) => {
   // Async 작업...
-  resolve("성공했어요!");
+  const data = [1, 2, 3, 4, 5];
+  resolve(data);
   reject("실패했어요ㅠㅜ");
 });
 
@@ -76,10 +77,22 @@ function getCommit(commitID) {
     { commitID: 1, contents: "첫번째 커밋" },
     { commitID: 2, contents: "두번째 커밋" },
   ];
-  return new Promise((resolve, reject) => {});
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const commit = commits.find(
+        commit => commit.commitID === commitID,
+      );
+      if (commit) resolve(commit);
+      else
+        reject(
+          new Error("커밋을 찾을 수 없어요"),
+        );
+    }, 2000);
+  });
 }
 getUser(1)
   .then(user => getRepo(user.githubID))
   .then(repo => getCommit(repo.commitID))
   .then(commit => console.log(commit))
   .catch(err => console.error(err));
+//어렵네...
