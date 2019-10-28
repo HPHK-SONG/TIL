@@ -3,8 +3,6 @@ import ReactDOM from "react-dom";
 
 import SearchBar from "./components/SearchBar";
 import ProductTable from "./components/ProductTable";
-import ProductRow from "./components/ProductRow";
-import ProductCategoryRow from "./components/ProductCategoryRow";
 
 const data = [
   {
@@ -41,11 +39,28 @@ const data = [
 ];
 
 class App extends React.Component {
+  state = {
+    keyword: "",
+    checked: false
+  };
+  handleKeywordChange = keyword => {
+    this.setState({ keyword });
+  };
+  handleChecked = () => {
+    this.setState({ checked: !this.state.checked });
+  };
   render() {
     return (
       <>
-        <SearchBar />
-        <ProductTable data={data} />
+        <SearchBar
+          handleKeywordChange={this.handleKeywordChange}
+          handleChecked={this.handleChecked}
+        />
+        <ProductTable
+          data={data}
+          keyword={this.state.keyword}
+          checked={this.state.checked}
+        />
       </>
     );
   }

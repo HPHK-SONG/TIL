@@ -3,7 +3,7 @@ import ProductRow from "./ProductRow";
 import ProductCategoryRow from "./ProductCategoryRow";
 
 const ProductTable = props => {
-  let category = "";
+  let prevCategory = "";
   return (
     <table>
       <thead>
@@ -13,17 +13,31 @@ const ProductTable = props => {
         </tr>
       </thead>
       <tbody>
-        {props.data.map(product => {
-          if (product.category !== category) {
-            category = product.category;
+        {props.data.map(({ category, price, stocked, name }) => {
+          if (category !== prevCategory) {
+            prevCategory = category;
             return (
               <>
-                <ProductCategoryRow category={product.category} />
-                <ProductRow name={product.name} price={product.price} />
+                <ProductCategoryRow category={category} />
+                <ProductRow
+                  name={name}
+                  price={price}
+                  stocked={stocked}
+                  keyword={props.keyword}
+                  checked={props.checked}
+                />
               </>
             );
           }
-          return <ProductRow name={product.name} price={product.price} />;
+          return (
+            <ProductRow
+              name={name}
+              price={price}
+              stocked={stocked}
+              keyword={keyword}
+              checked={checked}
+            />
+          );
         })}
       </tbody>
     </table>
