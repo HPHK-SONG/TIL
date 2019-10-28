@@ -1,24 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
 const App = () => {
-    const buttonText = { happy: 'hacking!' };
-    function getTime() {
-        return (new Date()).toLocaleTimeString();
-    }
+  const buttonText = { happy: "hacking!" };
+  function getTime() {
+    return new Date().toLocaleTimeString();
+  }
 
-    return ( //JSX
-        <div>
-            <h3>{getTime()}</h3>
-            <label htmlFor="name" className="name_label">
-                Enter Name:
-            </label>
-            <input id="name" type="text" />
-            <button style={{ backgroundColor: 'black', color: 'white' }}>
-                {buttonText.happy}
-            </button>
-        </div>
-    )
-}
+  return (
+    <div>
+      <h3>{getTime()}</h3>
+      <label htmlFor="name" className="name_label">
+        Enter Name:
+      </label>
+      <input id="name" type="text" />
+      <button style={{ backgroundColor: "black", color: "white" }}>
+        {buttonText.happy}
+      </button>
+    </div>
+  );
+};
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+ReactDOM.render(<App />, document.querySelector("#root"));
