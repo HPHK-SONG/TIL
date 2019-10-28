@@ -9,7 +9,8 @@ import CommentDetail from "./components/CommentDetail";
 
 class App extends React.Component {
   state = {
-    comments: []
+    comments: [],
+    body: faker.lorem.paragraph()
   };
   handleAddComment = () => {
     const newComment = {
@@ -18,7 +19,11 @@ class App extends React.Component {
       body: faker.lorem.sentence(),
       avatar: faker.image.avatar()
     };
-    this.setState({ comments: [newComment, ...this.state.comments] });
+    // this.setState({ comments: [...this.state.comments,newComment] });
+    // comments ? 변하죠! 주소값자체가 변경
+    this.state.comments.push(newComment);
+    // comments ? 안변합니다 안쪽을 보면 변했죠 주소값은 변하지않고 내부만 변경
+    this.setState(this.state);
   };
 
   render() {
@@ -34,7 +39,7 @@ class App extends React.Component {
 
         <Segment>
           <h4 className="ui header">For your infomation!</h4>
-          <p>{faker.lorem.paragraph()}</p>
+          <p>{this.state.body}</p>
         </Segment>
 
         <Message
