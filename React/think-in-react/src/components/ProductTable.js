@@ -34,8 +34,8 @@ const ProductTable = props => {
               name={name}
               price={price}
               stocked={stocked}
-              keyword={keyword}
-              checked={checked}
+              keyword={props.keyword}
+              checked={props.checked}
             />
           );
         })}

@@ -43,8 +43,8 @@ class App extends React.Component {
     keyword: "",
     checked: false
   };
-  handleKeywordChange = keyword => {
-    this.setState({ keyword });
+  handleKeywordChange = word => {
+    this.setState({ keyword: word });
   };
   handleChecked = () => {
     this.setState({ checked: !this.state.checked });
