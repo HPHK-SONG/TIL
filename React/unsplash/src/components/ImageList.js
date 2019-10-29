@@ -1,5 +1,8 @@
 import React from "react";
 
-export default function ImageList() {
-  return <img src="http://placehold.it/200x200" alt="result" />;
+export default function ImageList(props) {
+  const images = props.images.map(image => {
+    return <img src={image.urls.small} alt={image.description} />;
+  });
+  return <>{images}</>;
 }

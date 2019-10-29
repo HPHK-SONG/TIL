@@ -17,8 +17,7 @@ export default class App extends Component {
     const response = await unsplash.get("search/photos", {
       params: { query: this.state.keyword }
     });
-    console.log(response);
-    // `search/photos?query=${word}`
+    this.setState({ images: response.data.results });
   };
 
   render() {
