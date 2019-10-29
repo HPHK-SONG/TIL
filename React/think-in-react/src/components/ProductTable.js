@@ -3,6 +3,7 @@ import ProductRow from "./ProductRow";
 import ProductCategoryRow from "./ProductCategoryRow";
 
 const ProductTable = props => {
+  if (props.data === null) return <h2>로딩중입니다...</h2>;
   let prevCategory = "";
   return (
     <table>

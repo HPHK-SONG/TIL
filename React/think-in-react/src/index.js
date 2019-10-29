@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import axios from "axios";
 
 import SearchBar from "./components/SearchBar";
 import ProductTable from "./components/ProductTable";
-
+/*
 const data = [
   {
     category: "Sporting Goods",
@@ -37,12 +38,30 @@ const data = [
   },
   { category: "Electronics", price: "$199.99", stocked: true, name: "Nexus 7" }
 ];
+*/
 
 class App extends React.Component {
   state = {
     keyword: "",
-    checked: false
+    checked: false,
+    data: null
   };
+
+  async getData(url) {
+    const res = await axios.get(url);
+    const { data } = res;
+    //const data = res.data;
+    this.setState({ data });
+    //this.setState({data:data});
+    console.log(data);
+  }
+
+  componentDidMount() {
+    //API를 찔러서 데이를 가져오는 일을 할 겁니다.
+    const url = "https://frozen-ocean-08299.herokuapp.com";
+    this.getData(url);
+  }
+
   handleKeywordChange = word => {
     this.setState({ keyword: word });
   };
@@ -57,7 +76,7 @@ class App extends React.Component {
           handleChecked={this.handleChecked}
         />
         <ProductTable
-          data={data}
+          data={this.state.data}
           keyword={this.state.keyword}
           checked={this.state.checked}
         />
