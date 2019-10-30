@@ -7,7 +7,8 @@ export default class App extends Component {
   state = {
     keyword: "",
     images: [],
-    page: 1
+    page: 1,
+    number: 0
   };
 
   handlePage = e => {
@@ -29,6 +30,16 @@ export default class App extends Component {
   render() {
     return (
       <div className="ui container">
+        <button
+          className="ui button"
+          onClick={async () => {
+            console.log(this.state.number);
+            await this.setState({ number: this.state.number + 1 });
+            console.log(this.state.number);
+          }}
+        >
+          스테이트변경!
+        </button>
         <SearchBar
           handleKeyword={this.handleKeyword}
           onSubmit={this.onSubmit}
@@ -40,8 +51,8 @@ export default class App extends Component {
           {this.state.page === 1 ? null : (
             <button
               className="ui button"
-              onClick={() => {
-                this.handlePage(false);
+              onClick={async () => {
+                await this.handlePage(false);
                 this.onSubmit();
               }}
             >
@@ -52,8 +63,8 @@ export default class App extends Component {
           {this.state.images.length === 0 ? null : (
             <button
               className="ui button"
-              onClick={() => {
-                this.handlePage(true);
+              onClick={async () => {
+                await this.handlePage(true);
                 this.onSubmit();
               }}
             >
