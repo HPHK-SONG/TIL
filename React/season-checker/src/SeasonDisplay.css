@@ -1,0 +1,25 @@
+.season-display {
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.season-display.winter i {
+  color: deepskyblue;
+}
+
+.season-display.summer i {
+  color: red;
+}
+
+.winter {
+  color: darkblue;
+  background-color: aqua;
+}
+
+.summer {
+  background-color: orange;
+  color: yellow;
+}
