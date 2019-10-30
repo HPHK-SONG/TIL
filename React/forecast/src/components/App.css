@@ -1,0 +1,11 @@
+.container {
+  border: 2px solid lightgray;
+  border-radius: 5%;
+}
+
+.header-padding {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
