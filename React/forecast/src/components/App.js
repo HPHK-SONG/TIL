@@ -40,6 +40,7 @@ const App = () => {
       await getTemp(coords);
       await getHourlyTemp(coords);
     } catch (error) {
+      console.log(error);
       alert("위치 제발 동의해주세요ㅠㅠ");
     }
   };
@@ -53,12 +54,14 @@ const App = () => {
         <h1>일기예보</h1>
       </header>
       <main className="container">
-        {!current ? (
+        {!current || !forecast ? (
           <Spinner />
         ) : (
-          <Current current={current} unit={unit} setUnit={setUnit} />
+          <>
+            <Current current={current} unit={unit} setUnit={setUnit} />
+            <Forecast forecast={forecast} unit={unit} />
+          </>
         )}
-        {!forecast ? <Spinner /> : <Forecast forecast={forecast} unit={unit} />}
       </main>
     </>
   );

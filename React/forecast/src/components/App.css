@@ -1,6 +1,7 @@
 .container {
   border: 2px solid lightgray;
   border-radius: 5%;
+  max-width: 700px;
 }
 
 .header-padding {
