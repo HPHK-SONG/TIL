@@ -17,10 +17,16 @@ const Forecast = ({ forecast, unit }) => {
           : Math.round((e.main.temp * 9) / 5 + 32)
     };
   });
-  console.log(data);
+
+  const responsiveWidth = () => {
+    const maxWidth = 500;
+    const width = window.innerWidth - 10;
+    return width > maxWidth ? maxWidth : width;
+  };
+
   return (
     <div className="forecast">
-      <LineChart width={500} height={200} data={data}>
+      <LineChart width={responsiveWidth()} height={200} data={data}>
         <Line type="monotone" dataKey="기온" />
         <XAxis dataKey="time" />
         <YAxis domain={["dataMin - 1", "dataMax + 1"]} />
