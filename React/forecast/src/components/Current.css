@@ -1,0 +1,32 @@
+.contents {
+  font-size: 1.2rem;
+  /* rem: html기본 사이즈 대비 1.2배 */
+}
+
+.weather {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.temparature {
+  font-size: 4rem;
+}
+
+.additional-info {
+  font-size: 1.5rem;
+}
+
+.grid-contents {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.units {
+  display: flex;
+  font-size: 2.5rem;
+}
+
+.clickable {
+  color: blue;
+  cursor: pointer;
+}
