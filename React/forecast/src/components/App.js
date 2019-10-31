@@ -26,7 +26,13 @@ const App = () => {
     const { data } = res;
     setCurrent(data);
   };
-  const getHourlyTemp = async coords => {};
+  const getHourlyTemp = async coords => {
+    const { latitude: lat, longitude: lon } = coords;
+    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&APPID=${APPID}&units=metric&lang=kr`;
+    const res = await Axios.get(url);
+    const { data } = res;
+    setForecast(data);
+  };
 
   const getAll = async () => {
     try {
@@ -52,8 +58,7 @@ const App = () => {
         ) : (
           <Current current={current} unit={unit} setUnit={setUnit} />
         )}
-
-        <Forecast />
+        {!forecast ? <Spinner /> : <Forecast forecast={forecast} unit={unit} />}
       </main>
     </>
   );

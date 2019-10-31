@@ -27,10 +27,25 @@ const Current = props => {
       <section className="grid-contents">
         <article className="weather">
           <StateIcon icon={weather[0].icon} />
-          <p className="temparature">{main.temp}</p>
+          <p className="temparature">
+            {unit === "c"
+              ? Math.round(main.temp)
+              : Math.round((main.temp * 9) / 5 + 32)}
+          </p>
           <section className="units">
-            <span className={unit === "c" ? null : "clickable"}>°C</span>
-            <span className={unit === "f" ? null : "clickable"}>°F</span>
+            <span
+              className={unit === "c" ? null : "clickable"}
+              onClick={unit === "c" ? null : changeUnit}
+            >
+              °C
+            </span>
+            <span>|</span>
+            <span
+              className={unit === "f" ? null : "clickable"}
+              onClick={unit === "f" ? null : changeUnit}
+            >
+              °F
+            </span>
           </section>
         </article>
         <article className="additional-info">
