@@ -101,10 +101,18 @@ async function update2() {
   console.log(updated);
 }
 // update2();
+
+async function update3() {
+  const updated = await Course.find()
+    .where({ isPublished: false })
+    .updateMany({ price: 20 });
+  console.log(updated);
+}
+update3();
 async function remove() {
   const deleted = await Course.deleteOne({
     _id: "5dc259d661bcc10fb0c7e289"
   });
   console.log(deleted);
 }
-remove();
+// remove();
