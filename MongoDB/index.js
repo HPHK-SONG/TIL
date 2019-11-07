@@ -12,7 +12,12 @@ mongoose
 
 const authorSchema = new mongoose.Schema({
   name: String,
-  email: { type: String, required: true, unique: true, lowercase: true }
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true
+  }
 });
 
 const courseSchema = new mongoose.Schema({
@@ -77,4 +82,29 @@ async function read() {
     .sort("-name")
     .select("name tags price");
 }
-read();
+// read();
+
+//UPDATE
+// 1. 데이터를 조회해서 수정한 후 저장
+// 2. 바로 수정하는 방법
+async function update() {
+  //첫번째방법
+  const course = await Course.findById("5dc2521899a8be17b0f4e859");
+  course.name = "JSON ARRAY";
+  await course.save();
+}
+async function update2() {
+  const updated = await Course.updateMany(
+    { isPublished: true },
+    { price: 15 }
+  );
+  console.log(updated);
+}
+// update2();
+async function remove() {
+  const deleted = await Course.deleteOne({
+    _id: "5dc259d661bcc10fb0c7e289"
+  });
+  console.log(deleted);
+}
+remove();
