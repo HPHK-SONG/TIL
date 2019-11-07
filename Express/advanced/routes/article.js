@@ -1,22 +1,41 @@
 const express = require("express");
 const router = express.Router();
+const { Article, validateArticle } = require("../models/article");
+const { User } = require("../models/user");
 
-const articles = [
-  { id: 1, author: 1, content: "nice to meet you" },
-  { id: 2, author: 3, content: "listen to my music" }
-];
-
-router.get("/:id", (req, res) => {
-  res.send(articles.find(article => article.id === parseInt(req.params.id)));
+router.get("/", async (req, res, next) => {
+  const original = await Article.find();
+  const result = await Article.find().populate("author");
+  res.send({ original, result });
+  next();
 });
 
-router.post("/", (req, res) => {
-  articles.push({
-    id: articles.length + 1,
-    author: req.body.author,
-    content: req.body.content
+router.get("/:id", async (req, res, next) => {
+  const article = await Article.findById(req.params.id).populate(
+    "author"
+  );
+  res.send(article);
+  next();
+});
+
+router.post("/", async (req, res, next) => {
+  if (validateArticle(req.body).error) {
+    res.status(400).send("양식에 맞는 입력이 아닙니다");
+    next();
+    return;
+  }
+  const { title, author, contents } = req.body;
+  const article = new Article({
+    title,
+    author,
+    contents
   });
-  res.send("포스팅 완료!");
+  const result = await article.save();
+  const user = await User.findById(author);
+  user.articles.push(article._id);
+  await user.save();
+  res.status(200).send(result);
+  next();
 });
 
 module.exports = router;
