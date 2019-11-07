@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const user = require("./routes/user");
 const article = require("./routes/article");
 const app = express();
+
 app.use((req, res, next) => {
   mongoose
     .connect("mongodb://localhost/express-advanced", {
