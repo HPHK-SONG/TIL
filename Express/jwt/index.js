@@ -26,4 +26,13 @@ app.post("/login", (req, res) => {
     secretKey,
     { expiresIn: "1m" }
   );
+  res.json({ jwt: token });
 });
+
+app.get("/personal", (req, res) => {
+  const { data, error } = verifyToken(req);
+  if (data) res.json(data);
+  if (error) res.json(error);
+});
+
+app.listen(3000, () => console.log("서버 가동 중...."));
