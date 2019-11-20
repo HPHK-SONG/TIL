@@ -1,0 +1,10 @@
+  
+div {
+    margin: 10px;
+    border: solid 3px black;
+  }
+  .root {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: 90vh;
+  }
