@@ -5,6 +5,6 @@
   "license": "MIT",
   "dependencies": {
     "@hapi/joi": "^16.1.7",
-    "express": "^4.17.1"
+    "express": "^4.17.3"
   }
 }
